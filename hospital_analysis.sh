@@ -7,9 +7,8 @@ process_vitals() {
 
     mkdir -p reports
 
-    # Find CRITICAL entries from heart rate and temperature logs
-    grep "CRITICAL" active_logs/heart_rate.log active_logs/temperature.log 2>/dev/null | \
-    awk -F',' '
+    grep -h "CRITICAL" active_logs/heart_rate_log.log active_logs/temperature_log.log 2>/dev/null | \
+    awk -F' \\| ' '
     {
         printf "Timestamp: %s | Device_ID: %s | Value: %s\n", $1, $2, $3
     }' > reports/critical_alerts.txt
@@ -22,7 +21,7 @@ water_audit() {
 
     echo "Analyzing ICU water reserve usage..."
 
-    awk -F',' '
+    awk -F' \\| ' '
     /ICU_WATER_RESERVE/ {
         total += $3
         count++
@@ -32,11 +31,10 @@ water_audit() {
         if (count > 0) {
             average = total / count
             printf "Average ICU Water Usage: %.2f liters\n", average
-        }
-        else {
+        } else {
             printf "No ICU water data found.\n"
         }
-    }' active_logs/water_usage.log 2>/dev/null
+    }' active_logs/water_usage_log.log 2>/dev/null
 }
 
 # Execute functions
