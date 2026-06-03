@@ -26,3 +26,14 @@ initialize_system() {
 
     echo "Directories ready."
 }
+secure_data() {
+	# Only owner can read and write active_logs
+	chmod 600 active_logs
+	echo "Permissions set on active_logs: "
+	ls -l | grep active_logs
+}
+ 
+# === Execution Logic ===
+initialize_system
+secure_data
+echo "System Environment Secured - $(date)"
