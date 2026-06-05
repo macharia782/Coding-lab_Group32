@@ -17,8 +17,10 @@ for log_file in "$ACTIVE_DIR"/*.log; do
 
 # Moves the log files to archived_logs renamed with timestamps
 mv "$log_file" "$ARCHIVE_DIR/${base_name}_${TIMESTAMP}.log"
-
+echo "Archived: ${base_name}_${TIMESTAMP}.log"
 # Recreates a fresh empty log file in active_logs
 touch "$log_file"
-
+echo "Recreated empty: ${base_name}.log"
 done
+
+echo "Log rotation complete."
