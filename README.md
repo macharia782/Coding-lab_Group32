@@ -11,8 +11,11 @@ and Water Usage across the facility.
 ## Group Members & Roles
 
 Joy Wangui Macharia
+
 Anaise Umugwaneza
+
 Philbert Iradukunda
+
 Alvin Mudaheranwa
 
 | Member  | Role 								                      |
